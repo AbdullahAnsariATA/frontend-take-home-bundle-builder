@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+@theme {
+  --color-bg-soft: #edf4ff;
+  --color-text-primary: #0b0d10;
+  --color-text-secondary: #484848;
+  --color-text-tertiary: #6f7882;
+  --color-purple: #4e2fd2;
+  --color-purple-hover: #3f24a8;
+  --color-purple-muted: rgba(78, 47, 210, 0.06);
+  --color-text-dark: #1f1f1f;
+  --color-border: #e0e5ec;
+  --color-card-border: #e0e5ec;
+  --color-savings: #0aa288;
+  --color-strike: #d8392b;
+  --color-price-muted: #575757;
+  --color-section-label: #a8b2bd;
+  --color-divider: #ced6de;
+  --color-stepper-bg: #f0f4f7;
+  --color-stepper-disabled: #e6ebf0;
+  --color-variant-active: rgba(29, 240, 187, 0.04);
+  --color-step-border: rgba(31, 31, 31, 0.5);
+  --font-gilroy-medium: 'Gilroy-Medium', sans-serif;
+  --font-gilroy-semibold: 'Gilroy-SemiBold', sans-serif;
+  --font-gilroy-bold: 'Gilroy-Bold', sans-serif;
+  --font-gilroy-regular: 'Gilroy-Regular', sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-gilroy-medium);
+    background: #ffffff;
+    color: var(--color-text-primary);
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button {
+    outline: none;
+    font: inherit;
+    line-height: normal;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Keep product photos crisp when scaled down to Figma sizes */
+  .product-image,
+  .review-item-img,
+  .variant-chip-img,
+  .badge-icon {
+    image-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .app-ambient {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 12% 18%, rgba(78, 47, 210, 0.07), transparent 55%),
+      radial-gradient(ellipse 50% 45% at 88% 12%, rgba(10, 162, 136, 0.06), transparent 50%),
+      radial-gradient(ellipse 45% 40% at 70% 88%, rgba(78, 47, 210, 0.05), transparent 55%);
+    animation: ambient-drift 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes ambient-drift {
+    0% {
+      transform: scale(1) translate3d(0, 0, 0);
+      opacity: 0.85;
+    }
+    100% {
+      transform: scale(1.08) translate3d(-1.5%, 1%, 0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-ambient {
+      animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
